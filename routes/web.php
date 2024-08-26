@@ -1,8 +1,13 @@
 <?php
 
+use App\Enums\SuporteStatus;
 use App\Http\Controllers\Admin\{SuporteController};
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/test', function () {
+    dd(array_column(SuporteStatus::cases(), 'name'));
+});
 
 Route::delete('/suportes/{id}', [SuporteController::class, 'destroy'])->name('suportes.destroy');
 

@@ -11,16 +11,19 @@
         <th></th>
     </thead>
     <tbody>
-        @foreach ($suportes as $suporte)
+        @foreach ($suportes->items() as $suporte)
             <tr>
-                <td>{{ $suporte['subject'] }}</td>
-                <td>{{ $suporte['status']}}</td>
-                <td>{{ $suporte['body']}}</td>
+                <td>{{ $suporte->subject }}</td>
+                <td>{{ getStatusSuporte($suporte->status)}}</td>
+                <td>{{ $suporte->body}}</td>
                 <td>
-                    <a href="{{ route('suportes.show', $suporte['id']) }}">Detalhes</a>
-                    <a href="{{  route('suportes.edit', $suporte['id'])   }}">Editar</a>
+                    <a href="{{ route('suportes.show', $suporte->id) }}">Detalhes</a>
+                    <a href="{{  route('suportes.edit', $suporte->id)   }}">Editar</a>
                 </td>
             </tr>
         @endforeach
     </tbody>
 </table>
+
+<x-pagination :paginator="$suportes"
+:appends="$filters"  />
